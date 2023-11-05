@@ -33,7 +33,7 @@ Wenn man aber nicht möchte, daß `emustarter.py` versucht, den ersten Snapshot 
 - Mame-Emulation: Falls man nicht weiß, was man bei `MAME_SAMPLES_PATH` angeben soll, kann man in dem Verzeichnis mit den Spieldateien ein leeres Verzeichnis `samples` erstellen, und dieses dann in `emustarter.dat` angeben.
 
 Startet man `emustarter.py` ohne Optionen, zeigt es einem jeweils eine Liste an, aus der man das gewünschte System und das gewünschte Spiel auswählen kann.
-Kennt man aber schon die Zahlen, die man wählen würde, kann man `emustarter.py` auch direkt mit diesen Zahlen starten: `emustarter.py 3 2` startet z.B. das zweite Spiel in der Liste von Amiga-Spielen, `emustarter.py 2 5` das fünfte Spiel aus der Liste von Atari-Spielen, usw..
+Kennt man aber schon die Zahlen, die man wählen würde, kann man `emustarter.py` auch direkt mit diesen Zahlen starten: `emustarter.py 3 2` startet z.B. das zweite Spiel in der Liste von Amiga-Spielen, `emustarter.py 2 5` das fünfte Spiel aus der Liste von Atari-Spielen, und so weiter. So ist die Benutzung von `emustarter.py` nochmal wesentlich schneller.
 
 Weitere Optionen von `emustarter.py`:
 
