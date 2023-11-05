@@ -1,6 +1,6 @@
 #### emustarter.py 3.0
 
-Emulators of retro computers have a lot of options. But when you want to play a game, you just want to tell the emulator: "I want to use this system, and I want to play this game". You don't want to go through a lot of configuration work, before starting playing.
+Emulators of retro computers have a lot of options. But when you want to play a game, you just want to say: "Computer, I'd like to use this system, and I'd like to play this game!". You don't want to go through a lot of configuration work, before starting playing.
 `emustarter.py` let's you select one of several systems and the game you want to play on the Linux console, and ideally handles the rest of the configuration and just starts the game. 
 
 Supported systems and emulators are (these are typical emulators on Linux):
@@ -30,7 +30,7 @@ So, this is the default. If you don't want to load such a snapshot, put a "0" (a
 - Mame emulation: If there isn't a directory for `MAME_SAMPLES_PATH`, you can just create an empty directory "samples" in the directory of the game files, and specify it in the mentioned variable in `emustarter.dat`.
 
 By default, `emustarter.py` presents you lists to select the system and the game. But if you already know the numbers, you can call `emustarter.py` with them as command-line options.
-For example `emustarter.py 3 2` starts the second game in your Amiga list.
+For example `emustarter.py 3 2` starts the second game in your Amiga list, `emustarter.py 2 5` starts the fifth game in the Atari list and so on. This makes using `emustarter.py` even faster.
 Other command line options to `emustarter.py` are:
 
 - `-vol 10`: Sets the sound volume to a value of 10. What `10` means in this context, depends on the emulator.
