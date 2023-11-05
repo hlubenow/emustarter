@@ -3,7 +3,7 @@
 Emulators of retro computers have a lot of options. But when you want to play a game, you just want to tell the emulator: "I want to use this system, and I want to play this game". You don't want to go through a lot of configuration work, before starting playing.
 `emustarter.py` let's you do this on the Linux console: It lets you select one of several systems, then the game you want to play, and ideally it handles the rest of the configuration and just starts the game. 
 
-Supported systems and emulators are:
+Supported systems and emulators are (these are typical emulators on Linux):
 
 - Sinclair ZX Spectrum  (fuse)
 - Atari 800 XL          (atari800)
