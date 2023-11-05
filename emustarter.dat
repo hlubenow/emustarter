@@ -1,57 +1,56 @@
 [Directories]
 
-# ZX Spectrum programs (".z80" or ".sna"-files):
+# ZX Spectrum-Programme (".z80" or ".sna"-Dateien):
 SPECTRUM_PROGRAMS_PATH=/home/user/spectrum/programs
 
-# Atari programs (".atr"-files):
+# Atari-Programme (".atr"-Dateien):
 ATARI_PROGRAMS_PATH=/home/user/atari/programs
 
-# Amiga configuration files of FS-UAE, which are created with "fs-uae-launcher":
+# Verzeichnis der Amiga-Konfigurationsdateien von FS-UAE, die mit "fs-uae-launcher" erstellt werden:
 AMIGA_CONFIGURATIONS_PATH=/home/user/Dokumente/FS-UAE/Configurations
 
-# Mame games (".zip"-files):
+# Mame-Spiele (".zip"-Dateien):
 MAME_PROGRAMS_PATH=/home/user/mame/programs
 
-# Mame samples (should be a directory "samples" below the Mame main directory):
+# Mame samples (Das ist meist ein Verzeichnis "samples" direkt unterhalb des Mame Hauptverzeichnisses. Im Zweifel kann man es auch selbst erstellen):
 MAME_SAMPLES_PATH=/home/user/mame/samples
 
-# Games:
+# Spiele:
 
 [Spectrum]
 
-# 1. Full name of the game,
-# 2. Filename of the snapshot-file (".z80", ".sna").
+# 1. Name des Spiels (voll ausgeschrieben),
+# 2. Dateiname der Snapshot-Datei (".z80", ".sna").
 
-First Game, firstgame.z80
-Second Game, secondgame.sna
-Third Game, thirdgame.z80
+Erstes Spiel, erstesspiel.z80
+Zweites Spiel, zweitesspiel.sna
+Drittes Spiel, drittesspiel.z80
 
 [Atari]
 
-# 1. Name of the game,
-# 2. Filename of the ".atr"-file,
-# 3. Atari 800 XL-System (0) or (the older) Atari 800-System (1).
+# 1. Name des Spiels (voll ausgeschrieben),
+# 2. Dateiname ".atr"-Datei,
+# 3. Atari 800 XL-System (0) oder Atari 800-System (1).
 
-First Game, firstgame.atr, 0
-Second Game, secondgame.atr, 0
-Third Game, thirdgame.atr, 1
+Erstes Spiel, erstesspiel.atr, 0
+Zweites Spiel, zweitesspiel.atr, 0
+Drittes Spiel, drittesspiel.atr, 1
 
 [Amiga]
 
-# Amiga:
-# 1. Full name of the game,
-# 2. Name of the configuration created with "fs-uae-launcher" (see README.md for details).
-# 3. Without a third entry, the first memory state is loaded. Add ", 0" to avoid that, or for example ", 2" to load the second memory state instead. 
+# 1. Name des Spiels (voll ausgeschrieben),
+# 2. Name der Konfigurationsdateien, die mit "fs-uae-launcher" erstellt werden (siehe README.md):
+# 3. Ohne einen dritten Eintrag wird der erste Speicher-Snapshot geladen. Ein dritter Eintrag "0" bedeutet, daß nichts geladen werden soll. Beispielsweise "2" bedeutet, daß der zweite Speicher-Snapshot geladen wird:
 
-First Game, First_Game.fs-uae
-Second Game, Second_Game.fs-uae
-Third Game, Third_Game.fs-uae, 0
+Erstes Spiel, First_Game.fs-uae
+Zweites Spiel, Second_Game.fs-uae
+Drittes Spiel, Third_Game.fs-uae, 0
 
 [Mame]
 
-# 1. Full name of the game,
-# 2. Filename of the game-file (".zip").
+# 1. Name des Spiels (voll ausgeschrieben),
+# 2. Dateiname der Spieldatei (".zip").
 
-First Game, firstgame.zip
-Second Game, secondgame.zip
-Third Game, thirdgame.zip
+Erstes Spiel, erstesspiel.zip
+Zweites Spiel, zweitesspiel.zip
+Drittes Spiel, drittesspiel.zip

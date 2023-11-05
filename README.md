@@ -1,40 +1,44 @@
-### emustarter.py 3.0
+#### emustarter.py 3.0
 
-Emulators of retro computers have a lot of options. But when you want to play a game, you just want to tell the emulator: "I want to use this system, and I want to play this game". You don't want to go through a lot of configuration work, before starting playing.
-`emustarter.py` let's you select one of several systems and the game you want to play on the Linux console, and ideally handles the rest of the configuration and just starts the game. 
-
-Supported systems and emulators are (these are typical emulators on Linux):
+Damit Emulatoren von Retro-Computern laufen, müssen eine Menge Optionen gesetzt sein. Wenn man spielen will, will man sich aber nicht mit diesen Optionen herumschlagen, sondern man will einfach sagen: "Ich möchte auf diesem System dieses Spiel spielen", und dann soll das Spiel einfach starten, egal auf welchem Emulator.
+Um das auf der Linux-Konsole zu ermöglichen, hab' ich `emustarter.py` geschrieben, und zwar für diejenigen Systeme, bzw. Emulatoren, die ich benutze. Unterstützt werden also: 
 
 - Sinclair ZX Spectrum  (fuse)
 - Atari 800 XL          (atari800)
 - Amiga (500 and 1200)  (fs-uae)
 - Mame                  (mame)
 
-Of course, these emulators have to be already installed correctly on your system, otherwise, `emustarter.py` won't work.
-And to make it work (it does for me!), it also needs a bit of, well, configuration.
-There is a configuration file called `emustarter.dat`, that should be in the same directory as `emustarter.py`. In the file `emustarter.dat` you have to specify the emulator directories, and then you have to write the list of games and game-files, you want to use with `emustarter.py`. Please don't edit the headlines in square brackets. There are examples of the required data format in the file `emustarter.dat` provided here. That file has to be edited according to the circumstances on your system. The entries of the game lines in `emustarter.dat` are separated by commata.
-If `emustarter.dat` is edited correctly, it can be read by `emustarter.py`. Then, all the needed information can be found, and games can be started as described.
+Natürlich müssen diese Emulatoren auf dem Linux-System installiert und schon eingerichtet sein, damit das funktioniert.
+Und dann muß man leider auch noch etwas für `emustarter.py` konfigurieren.
+Dazu muß man die Konfigurationsdatei `emustarter.dat` editieren, die sich in demselben Verzeichnis wie `emustarter.py` befinden sollte.
+In `emustarter.dat` sind einige Verzeichnisse anzugeben, wo die Emulatoren die Spieldateien finden. Und dann muß man eine Liste von den Spielen und Spieldateien schreiben, die man mit `emustarter.py` benutzen möchte.
+An den Zeilen mit den Überschriften in eckigen Klammern (wie "[Directories]") sollte man nichts ändern.
+In der Datei `emustarter.dat` sind auch Beispiele angegeben, wie das Format der Dateinzeilen aussehen soll. Diese Zeilen müssen dann also an die Gegebenheiten auf dem jeweiligen Linux-System angepaßt werden.
+Die Einträge in den Zeilen für die Spiele sind einfach jeweils durch ein Komma getrennt.
+Wenn `emustarter.dat` im richtigen Format ist, kann es von `emustarter.py` gelesen werden, so daß dann sind alle benötigten Informationen vorhanden sind, und Spiele wie beschrieben gestartet werden können.
 
-The following background-information is probably needed to be able to edit `emustarter.dat` correctly:
+Die folgenden Hintergrundinformationen sollte man noch kennen, um die Einträge in `emustarter.dat` richtig bearbeiten zu können: 
 
-- ZX Spectrum emulation with `fuse`: A configuration file `~/.fuserc` is also read by the emulator.
+- ZX Spectrum-Emulation mit `fuse`: Der Emulator liest zusätzlich seine eigene Konfigurationsdatei `~/.fuserc`.
 
-- Atari 800 XL emulation with `atari800`: A configuration file `~/.atari800.cfg` is also read by the emulator. This file can be created in the graphical user interface of `atari800`. This file especially also contains the locations of the Atari ROM files (`atarixl.rom` and such). That's why these locations don't need to be specified again in `emustarter.dat`. For convenience, I also upload the file `atari800.cfg` from my system here.
-- Most Atari 8-bit games run with the ROM of the [Atari 800 XL](https://upload.wikimedia.org/wikipedia/commons/b/bf/Atari-800XL.jpg) (`atarixl.rom`). Some older games need the ROM of the older [Atari 800](https://upload.wikimedia.org/wikipedia/commons/3/35/Atari_800.jpg) (`atariosb.rom`) though. To make `emustarter.py` aware of this, there has to be a third entry in the game lines in `emustarter.dat`: `0` is for the (ordinary) XL-ROM, `1` is for the Atari 800-ROM. `emustarter.py` will probably fail with an error, if this third entry is missing.
+- Atari 800 XL-Emulation mit `atari800`: Der Emulator liest zusätzlich seine eigene Konfigurationsdatei `~/.atari800.cfg`. Diese Datei kann mit der graphischen Benutzeroberfläche von `atari800` erstellt werden. Die Datei enthält dann insbesondere den Namen des Verzeichnisses mit den Atari ROM-Dateien (wie z.B. `atarixl.rom`). Das ist der Grund, warum diese Verzeichnisse nicht noch einmal in `emustarter.dat` angegeben werden müssen. Der Einfachheit halber hab' ich hier auch nochmal meine eigene Datei `atari800.cfg` hochgeladen, um zu zeigen, wie die ungefähr aussehen sollte.
+- Die meisten Atari 8-bit-Spiele verwenden das ROM des [Atari 800 XL](https://upload.wikimedia.org/wikipedia/commons/b/bf/Atari-800XL.jpg) (`atarixl.rom`). Einige ältere Spiele benötigen aber das ROM des älteren [Atari 800](https://upload.wikimedia.org/wikipedia/commons/3/35/Atari_800.jpg) (`atariosb.rom`). Damit `emustarter.py` damit umgehen kann, wird in den Datenzeilen zu den Spielen ein dritter Eintrag benötigt: `0` steht für das (normale) XL-ROM, `1` für das Atari 800-ROM. `emustarter.py` bricht (zur Zeit) wahrscheinlich mit einem Fehler ab, wenn dieser dritte Eintrag fehlt.
 
-- Amiga emulation with FS-UAE: After the game name, the name of the FS-UAE configuration has to be given as the second entry of the game lines in `emustarter.dat`. These configurations have to be created for each game with the program `fs-uae-launcher`, that comes with FS-UAE. 
-`fs-uae-launcher` writes these configuration files into a directory `../FS-UAE/Configurations`. They have the file-suffix `.fs-uae`. By default the directory should be created by `fs-uae-launcher` in `/home/user/Documents/FS-UAE/Configurations` (or `Dokumente` instead of `Documents` for German users). The location of this `Configurations`-directory has to be specified in the upper part of `emustarter.dat` at `AMIGA_CONFIGURATIONS_PATH=...`. (The location of the `FS-UAE`-directory can be changed by writing a different location into the file `/home/user/.config/fs-uae/base-dir`, just in case you wonder.)
-- When running an Amiga program with `fs-uae`, it is possible to save a snapshot of the Amiga's memory-state using the menu that appears when pressing `F12`. By default, `emustarter.py` starts `fs-uae` with loading the snapshot in the first slot directly (thanks to Frode Solheim for making this possible in `fs-uae`!). As a result, Amiga programs are started instantaneously, without any Amiga disk loading times (provided, that the memory state was saved, after the program was loaded once from the virtual disk). This is a very cool feature, that isn't possible on a real Amiga.
-So, this is the default. If you don't want to load such a snapshot, put a "0" (after a comma) in the game line as a third entry. Or for example a "2", if you want to load the snapshot in the second slot instead.
+- Amiga-Emulation mit FS-UAE: Nach dem Namen des Spiels muß in `emustarter.dat` nicht der Name der ".adf"-Datei angegeben werden, sondern der Name der FS-UAE-Konfigurationsdatei für dieses Spiel.
+Diese Konfigurationsdateien werden mit dem Programm `fs-uae-launcher` erstellt, das Teil von FS-UAE ist.
+`fs-uae-launcher` schreibt diese Konfigurationsdateien in ein Verzeichnis `../FS-UAE/Configurations`. Sie haben die Dateiendung `.fs-uae`. Standardmäßig sollte `fs-uae-launcher` diese Dateien nach `/home/user/Dokumente/FS-UAE/Configurations` schreiben. Der Name dieses Verzeichnisses `Configurations` ist derjenige, der im oberen Teil von `emustarter.dat` unter `AMIGA_CONFIGURATIONS_PATH=...` angegeben werden muß. (Der Ort dieses `FS-UAE`-Verzeichnisses kann übrigens dadurch geändert werden, daß man einen anderen Ort in die Datei `/home/user/.config/fs-uae/base-dir` schreibt, aber das nur am Rande.)
+- Verwendung von Snapshot-Dateien: Während ein Amiga-Programm in `fs-uae` läuft, kann man den Zustand des Speichers des Amigas in eine sog. Snapshot-Datei ("Save State") speichern, indem man dazu in `fs-uae` das Menü verwendet, das erscheint, wenn man `F12` drückt. Bei Amiga-Programmen versucht `emustarter.py` standardmäßig den Speicher-Snapshot im ersten Slot mitzuladen. (Vielen Dank an Frode Solheim, daß er das in `fs-uae` möglich gemacht hat!). Dadurch können Amiga-Programme unmittelbar ohne irgendwelche Disktettenladezeiten geladen werden (vorausgesetzt, der Speicherzustand des Amiga war in dem Moment als Snapshot gespeichert worden, als der Amiga gerade das Programm zuende geladen hatte). Das direkte Starten von Amiga-Programmen ohne Diskettenladezeiten ist eine tolle Sache, die nichtmal auf einem echten Amiga möglich ist.
+Wenn man aber nicht möchte, daß `emustarter.py` versucht, den ersten Snapshot zu laden, kann man eine "0" als dritten Eintrag in den Zeilen für die Spiele in `emustarter.dat` angeben. Möchte man, daß stattdessen z.B. der zweite Snapshot geladen wird, kann man dort eine "2" angeben.
 
-- Mame emulation: If there isn't a directory for `MAME_SAMPLES_PATH`, you can just create an empty directory "samples" in the directory of the game files, and specify it in the mentioned variable in `emustarter.dat`.
+- Mame-Emulation: Falls man nicht weiß, was man bei `MAME_SAMPLES_PATH` angeben soll, kann man in dem Verzeichnis mit den Spieldateien ein leeres Verzeichnis `samples` erstellen, und dieses dann in `emustarter.dat` angeben.
 
-By default, `emustarter.py` presents you lists to select the system and the game. But if you already know the numbers, you can call `emustarter.py` with them as command-line options.
-For example `emustarter.py 3 2` starts the second game in your Amiga list.
-Other command line options to `emustarter.py` are:
+Startet man `emustarter.py` ohne Optionen, zeigt es einem jeweils eine Liste an, aus der man das gewünschte System und das gewünschte Spielen auswählen kann.
+Kennt man aber schon die Zahlen, die man wählen würde, kann man `emustarter.py` auch direkt mit diesen Zahlen starten: `emustarter.py 3 2` startet z.B. das zweite Spiel in der Liste von Amiga-Spielen, `emustarter.py 2 5` das fünfte Spiel aus der Liste von Atari-Spielen, usw..
 
-- `-vol 10`: Sets the sound volume to a value of 10. What `10` means in this context, depends on the emulator.
-- `-nofs`: Don't use fullscreen mode.
-- `-nostart`: Don't start the emulator. Just print the line to execute, then exit.
+Weitere Optionen von `emustarter.py`:
+
+- `-vol 10`: Setzt die Lautstärke auf einen Wert von `10`. Was `10` in diesem Zusammenhang genau bedeutet, hängt vom jeweiligen Emulator ab.
+- `-nofs`: Nicht im Vollbildmodus starten (sondern in einem Fenster).
+- `-nostart`: Nicht den Emulator starten. Nur die Startzeile für den Emulator ausgeben, und dann beenden.
 
 License: GNU GPL 3.
