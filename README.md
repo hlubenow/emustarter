@@ -27,7 +27,7 @@ The following background-information is probably needed to be able to edit `emus
 - When running an Amiga program with `fs-uae`, it is possible to save a snapshot of the Amiga's memory-state using the menu that appears when pressing `F12`. By default, `emustarter.py` starts `fs-uae` with loading the snapshot in the first slot directly (thanks to Frode Solheim for making this possible in `fs-uae`!). As a result, Amiga programs are started instantaneously, without any Amiga disk loading times (provided, that the memory state was saved, after the program was loaded once from the virtual disk). This is a very cool feature, that isn't possible on a real Amiga.
 So, this is the default. If you don't want to load such a snapshot, put a "0" (after a comma) in the game line as a third entry. Or for example a "2", if you want to load the snapshot in the second slot instead.
 
-- Mame emulation: If there isn't a directory for `MAME_SAMPLES_PATH`, you can just create an empty directoriy "samples" in the directory of the game files, and specify it in the mentioned variable in `emustarter.dat`.
+- Mame emulation: If there isn't a directory for `MAME_SAMPLES_PATH`, you can just create an empty directory "samples" in the directory of the game files, and specify it in the mentioned variable in `emustarter.dat`.
 
 By default, `emustarter.py` presents you lists to select the system and the game. But if you already know the numbers, you can call `emustarter.py` with them as command-line options.
 For example `emustarter.py 3 2` starts the second game in your Amiga list.
