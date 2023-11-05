@@ -30,7 +30,7 @@ So, this is the default. If you don't want to load such a snapshot, put a "0" (a
 - Mame emulation: If there isn't a directory for `MAME_SAMPLES_PATH`, you can just create an empty directoriy "samples" in the directory of the game files, and specify it in the mentioned variable in `emustarter.dat`.
 
 By default, `emustarter.py` presents you lists to select the system and the game. But if you already know the numbers, you can call `emustarter.py` with them as command-line options.
-For example `emustarter.py 3 2` starts the second game on the Amiga.
+For example `emustarter.py 3 2` starts the second game in your Amiga list.
 Other command line options to `emustarter.py` are:
 
 - `-vol 10`: Sets the sound volume to a value of 10. What `10` means in this context, depends on the emulator.
