@@ -11,7 +11,7 @@ Um das auf der Linux-Konsole zu ermöglichen, hab' ich `emustarter.py` geschrieb
 Natürlich müssen diese Emulatoren auf dem Linux-System installiert und schon eingerichtet sein, damit das funktioniert.
 Und dann muß man leider auch noch etwas für `emustarter.py` konfigurieren.
 Dazu muß man die Konfigurationsdatei `emustarter.dat` editieren, die sich in demselben Verzeichnis wie `emustarter.py` befinden sollte.
-In `emustarter.dat` sind einige Verzeichnisse anzugeben, wo die Emulatoren die Spieldateien finden. Und dann muß man eine Liste von den Spielen und Spieldateien schreiben, die man mit `emustarter.py` benutzen möchte.
+In `emustarter.dat` sind einige Verzeichnisse anzugeben, wo die Emulatoren die Spieldateien finden. Und dann ist dort eine Liste von den Spielen und Spieldateien zu schreiben, die man mit `emustarter.py` benutzen möchte.
 An den Zeilen mit den Überschriften in eckigen Klammern (wie "[Directories]") sollte man nichts ändern.
 In der Datei `emustarter.dat` sind auch Beispiele angegeben, wie das Format der Dateinzeilen aussehen soll. Diese Zeilen müssen dann also an die Gegebenheiten auf dem jeweiligen Linux-System angepaßt werden.
 Die Einträge in den Zeilen für die Spiele sind einfach jeweils durch ein Komma getrennt.
