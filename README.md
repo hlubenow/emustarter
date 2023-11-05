@@ -21,7 +21,8 @@ Die folgenden Hintergrundinformationen sollte man noch kennen, um die Einträge 
 
 - ZX Spectrum-Emulation mit `fuse`: Der Emulator liest zusätzlich seine eigene Konfigurationsdatei `~/.fuserc`.
 
-- Atari 800 XL-Emulation mit `atari800`: Der Emulator liest zusätzlich seine eigene Konfigurationsdatei `~/.atari800.cfg`. Diese Datei kann mit der graphischen Benutzeroberfläche von `atari800` erstellt werden. Die Datei enthält dann insbesondere den Namen des Verzeichnisses mit den Atari ROM-Dateien (wie z.B. `atarixl.rom`). Das ist der Grund, warum diese Verzeichnisse nicht noch einmal in `emustarter.dat` angegeben werden müssen. Der Einfachheit halber hab' ich hier auch nochmal meine eigene Datei `atari800.cfg` hochgeladen, um zu zeigen, wie die ungefähr aussehen sollte.
+- Atari 800 XL-Emulation mit `atari800`: Der Emulator liest zusätzlich seine eigene Konfigurationsdatei `~/.atari800.cfg`. Diese Datei kann mit der grafischen Benutzeroberfläche von `atari800` erstellt werden. Der Einfachheit halber hab' ich hier auch nochmal meine eigene Datei `atari800.cfg` hochgeladen, um zu zeigen, wie die ungefähr aussehen sollte.
+- 
 - Die meisten Atari 8-bit-Spiele verwenden das ROM des [Atari 800 XL](https://upload.wikimedia.org/wikipedia/commons/b/bf/Atari-800XL.jpg) (`atarixl.rom`). Einige ältere Spiele benötigen aber das ROM des älteren [Atari 800](https://upload.wikimedia.org/wikipedia/commons/3/35/Atari_800.jpg) (`atariosb.rom`). Damit `emustarter.py` damit umgehen kann, wird in den Datenzeilen zu den Spielen ein dritter Eintrag benötigt: `0` steht für das (normale) XL-ROM, `1` für das Atari 800-ROM. `emustarter.py` bricht (zur Zeit) wahrscheinlich mit einem Fehler ab, wenn dieser dritte Eintrag fehlt.
 
 - Amiga-Emulation mit FS-UAE: Nach dem Namen des Spiels muß in `emustarter.dat` nicht der Name der ".adf"-Datei angegeben werden, sondern der Name der FS-UAE-Konfigurationsdatei für dieses Spiel.
@@ -31,6 +32,12 @@ Diese Konfigurationsdateien werden mit dem Programm `fs-uae-launcher` erstellt, 
 Wenn man aber nicht möchte, daß `emustarter.py` versucht, den ersten Snapshot zu laden, kann man eine "0" als dritten Eintrag in den Zeilen für die Spiele in `emustarter.dat` angeben. Möchte man, daß stattdessen z.B. der zweite Snapshot geladen wird, kann man dort eine "2" angeben.
 
 - Mame-Emulation: Falls man nicht weiß, was man bei `MAME_SAMPLES_PATH` angeben soll, kann man in dem Verzeichnis mit den Spieldateien ein leeres Verzeichnis `samples` erstellen, und dieses dann in `emustarter.dat` angeben.
+  
+- Noch zum Auffinden der Emulator-ROM-Dateien: Dazu müssen in `emustarter.dat` keine besonderen Angaben gemacht werden. Denn:
+  - fuse: Amstrad als Copyright-Inhaber der ZX Spectrum-ROMs war so freundlich, diese für Emulationszwecke freizugeben. Daher sind sie bei fuse gleich mit dabei (bei mir im Verzeichnis `/usr/share/fuse`). Daher werden sie von fuse automatisch gefunden.
+  - atari800: Der Name des Verzeichnisses mit den Atari ROM-Dateien (wie z.B. `atarixl.rom`) ist schon in der Konfigurationsdatei `~/.atari800.cfg` anzugeben und wird von dort vom Emulator `atari800` eingelesen.
+  - FS-UAE: Der Name des Verzeichnisses mit den Amiga ROM-Dateien (wie z.B. `kickstart1.3.rom` oder `kickstart3.1.rom`) wird in `fs-uae-launcher` mit Hilfe der grafischen Benutzeroberfläche angegeben, und von diesem Programm in die oben genannten Konfigurationsdateien geschrieben. Beim Starten der Amiga-Emulation wird eine dieser Dateien dann von `fs-uae` gelesen.
+  - Mame: Die Spiele selbst werden auch ROMs genannt.
 
 Startet man `emustarter.py` ohne Optionen, zeigt es einem jeweils eine Liste an, aus der man das gewünschte System und das gewünschte Spiel auswählen kann.
 Kennt man aber schon die Zahlen, die man wählen würde, kann man `emustarter.py` auch direkt mit diesen Zahlen starten: `emustarter.py 3 2` startet z.B. das zweite Spiel in der Liste von Amiga-Spielen, `emustarter.py 2 5` das fünfte Spiel aus der Liste von Atari-Spielen, und so weiter. So ist die Benutzung von `emustarter.py` nochmal wesentlich schneller.
