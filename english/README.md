@@ -33,7 +33,7 @@ By default, `emustarter.py` presents you lists to select the system and the game
 For example `emustarter.py 3 2` starts the second game in your Amiga list, `emustarter.py 2 5` starts the fifth game in the Atari list and so on. This makes using `emustarter.py` even faster.
 Other command line options to `emustarter.py` are:
 
-- `-vol 10`: Sets the sound volume to a value of 10. What `10` means in this context, depends on the emulator.
+- `-vol 10`: Sets the sound volume to a value of `10`. What `10` means in this context, depends on the emulator.
 - `-nofs`: Don't use fullscreen mode.
 - `-nostart`: Don't start the emulator. Just print the line to execute, then exit.
 
