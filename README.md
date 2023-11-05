@@ -12,7 +12,7 @@ Supported systems and emulators are (these are typical emulators on Linux):
 
 Of course, these emulators have to be already installed correctly on your system, otherwise, `emustarter.py` won't work.
 And to make it work (it does for me!), it also needs a bit of, well, configuration.
-There is a configuration file called `emustarter.dat`, that should be in the same directory as `emustarter.py`. In the file `emustarter.dat` you have to specify the emulator directories, and then you have to write the list of games and game-files, you want to use with `emustarter.py`. There are examples of the required data format in the file `emustarter.dat` provided here. That file has to be edited according to the circumstances on your system. The entries of the game lines in `emustarter.dat` are separated by commata.
+There is a configuration file called `emustarter.dat`, that should be in the same directory as `emustarter.py`. In the file `emustarter.dat` you have to specify the emulator directories, and then you have to write the list of games and game-files, you want to use with `emustarter.py`. Please don't edit the headlines in square brackets. There are examples of the required data format in the file `emustarter.dat` provided here. That file has to be edited according to the circumstances on your system. The entries of the game lines in `emustarter.dat` are separated by commata.
 If `emustarter.dat` is edited correctly, it can be read by `emustarter.py`. Then, all the needed information can be found, and games can be started as described.
 
 The following background-information is probably needed to be able to edit `emustarter.dat` correctly:
