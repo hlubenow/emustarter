@@ -8,6 +8,8 @@ Um das auf der Linux-Konsole zu ermöglichen, hab' ich `emustarter.py` geschrieb
 - Amiga (500 and 1200)  (fs-uae)
 - Mame                  (mame)
 
+##### Konfiguration
+
 Natürlich müssen diese Emulatoren auf dem Linux-System installiert und schon eingerichtet sein, damit das funktioniert.
 Und dann muß man leider auch noch etwas für `emustarter.py` konfigurieren.
 Dazu muß man die Konfigurationsdatei `emustarter.dat` editieren, die sich in demselben Verzeichnis wie `emustarter.py` befinden sollte.
@@ -37,6 +39,8 @@ Wenn man aber nicht möchte, daß `emustarter.py` versucht, den ersten Snapshot 
   - atari800: Der Name des Verzeichnisses mit den Atari ROM-Dateien (wie z.B. `atarixl.rom`) ist schon in der Konfigurationsdatei `~/.atari800.cfg` anzugeben und wird von dort vom Emulator `atari800` eingelesen.
   - FS-UAE: Der Name des Verzeichnisses mit den Amiga Kickstart ROM-Dateien wird in `fs-uae-launcher` mit Hilfe der grafischen Benutzeroberfläche angegeben, und von diesem Programm in die oben genannten Konfigurationsdateien geschrieben. Beim Starten der Amiga-Emulation wird eine dieser Dateien dann von `fs-uae` gelesen.
   - Mame: Die Spiele selbst werden auch ROMs genannt.
+
+##### Kommandozeilenoptionen
 
 - Startet man `emustarter.py` ohne Optionen, zeigt es einem jeweils eine Liste an, aus der man das gewünschte System und das gewünschte Spiel auswählen kann. Kennt man aber schon die Zahlen, die man wählen würde, kann man `emustarter.py` auch direkt mit diesen Zahlen starten: `emustarter.py 3 2` startet z.B. das zweite Spiel in der Liste von Amiga-Spielen, `emustarter.py 2 5` das fünfte Spiel aus der Liste von Atari-Spielen, und so weiter. So ist die Benutzung von `emustarter.py` nochmal wesentlich schneller.
 
