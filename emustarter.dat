@@ -13,7 +13,7 @@ AMIGA_CONFIGURATIONS_PATH=/home/user/Dokumente/FS-UAE/Configurations
 MAME_PROGRAMS_PATH=/home/user/mame/programs
 
 # Mame samples (should be a directory "samples" below the Mame main directory):
-MAME_SAMPLES_PATH= /home/user/mame/samples
+MAME_SAMPLES_PATH=/home/user/mame/samples
 
 # Games:
 
