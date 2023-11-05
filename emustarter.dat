@@ -39,7 +39,7 @@ Drittes Spiel, drittesspiel.atr, 1
 [Amiga]
 
 # 1. Name des Spiels (voll ausgeschrieben),
-# 2. Name der Konfigurationsdateien, die mit "fs-uae-launcher" erstellt werden (siehe README.md):
+# 2. Name der Konfigurationsdatei, die mit "fs-uae-launcher" erstellt worden sein muss (siehe README.md):
 # 3. Ohne einen dritten Eintrag wird der erste Speicher-Snapshot geladen. Ein dritter Eintrag "0" bedeutet, daß nichts geladen werden soll. Beispielsweise "2" bedeutet, daß der zweite Speicher-Snapshot geladen wird:
 
 Erstes Spiel, First_Game.fs-uae
