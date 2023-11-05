@@ -43,9 +43,9 @@ Third Game, thirdgame.atr, 1
 # 2. Name of the configuration created with "fs-uae-launcher" (see README.md for details).
 # 3. Without a third entry, the first memory state is loaded. Add ", 0" to avoid that, or for example ", 2" to load the second memory state instead. 
 
-First Game, First_Game
-Second Game, Second_Game
-Third Game, Third_Game, 0
+First Game, First_Game.fs-uae
+Second Game, Second_Game.fs-uae
+Third Game, Third_Game.fs-uae, 0
 
 [Mame]
 
