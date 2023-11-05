@@ -35,6 +35,6 @@ Other command line options to `emustarter.py` are:
 
 - `-vol 10`: Sets the sound volume to a value of 10. What `10` means in this context, depends on the emulator.
 - `-nofs`: Don't use fullscreen mode.
-- `-nostart`: Don't start. Just print the line to execute, then exit.
+- `-nostart`: Don't start the emulator. Just print the line to execute, then exit.
 
 License: GNU GPL 3.
