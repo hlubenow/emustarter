@@ -15,7 +15,7 @@ In `emustarter.dat` sind einige Verzeichnisse anzugeben, wo die Emulatoren die S
 An den Zeilen mit den Überschriften in eckigen Klammern (wie "[Directories]") sollte man nichts ändern.
 In der Datei `emustarter.dat` sind auch Beispiele angegeben, wie das Format der Dateinzeilen aussehen soll. Diese Zeilen müssen dann also an die Gegebenheiten auf dem jeweiligen Linux-System angepaßt werden.
 Die Einträge in den Zeilen für die Spiele sind einfach jeweils durch ein Komma getrennt.
-Wenn `emustarter.dat` im richtigen Format ist, kann es von `emustarter.py` gelesen werden, so daß dann sind alle benötigten Informationen vorhanden sind, und Spiele wie beschrieben gestartet werden können.
+Wenn `emustarter.dat` im richtigen Format ist, kann es von `emustarter.py` gelesen werden, so daß dann alle benötigten Informationen vorhanden sind, und Spiele wie beschrieben gestartet werden können.
 
 Die folgenden Hintergrundinformationen sollte man noch kennen, um die Einträge in `emustarter.dat` richtig bearbeiten zu können: 
 
