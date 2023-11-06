@@ -2,7 +2,7 @@
 # coding: utf-8
 
 """
-    emustarter.py 3.0 - Starts certain classic games with several emulators
+    emustarter.py 3.1 - Starts certain classic games with several emulators
                         on Linux. Supported systems and emulators are:
 
     - Sinclair ZX Spectrum  (fuse)
@@ -29,7 +29,9 @@
 import os, sys
 import time
 
-DATAFILE = "emustarter.dat"
+# Look for "emustarter.dat" in the same directory as "emustarter.py".
+# Change, if you like:
+DATAFILE = os.path.join(os.path.dirname(__file__), "emustarter.dat")
 
 class Main:
 
@@ -325,6 +327,10 @@ class EmuData:
         return a
 
     def readData(self):
+        if not os.path.exists(DATAFILE):
+            print("\nError: File \"" + DATAFILE + "\" not found.")
+            print("Make sure, it is present in the same directory as \"emustarter.py\".\n")
+            sys.exit(1)
         fh = open(DATAFILE, "r")
         a  = fh.readlines()
         fh.close()
