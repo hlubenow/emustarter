@@ -2,7 +2,7 @@
 # coding: utf-8
 
 """
-    emustarter.py 3.1 - Starts certain classic games with several emulators
+    emustarter.py 3.2 - Starts certain classic games with several emulators
                         on Linux. Supported systems and emulators are:
 
     - Sinclair ZX Spectrum  (fuse)
@@ -10,7 +10,7 @@
     - Amiga (500 and 1200)  (fs-uae)
     - Mame                  (mame)
 
-    Copyright (C) 2018-2023 Hauke Lubenow
+    Copyright (C) 2018-2024 Hauke Lubenow
 
     This program is free software: you can redistribute it and/or modify
      it under the terms of the GNU General Public License as published by
@@ -29,9 +29,9 @@
 import os, sys
 import time
 
-# Look for "emustarter.dat" in the same directory as "emustarter.py".
+# Look for "dat_emustarter.conf" in the same directory as "emustarter.py".
 # Change, if you like:
-DATAFILE = os.path.join(os.path.dirname(__file__), "emustarter.dat")
+DATAFILE = os.path.join(os.path.dirname(__file__), "dat_emustarter.conf")
 
 class Main:
 
