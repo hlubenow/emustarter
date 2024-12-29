@@ -1,4 +1,4 @@
-### emustarter.py 3.2
+### emustarter.py 3.3
 
 Damit Emulatoren von Retro-Computern laufen, müssen eine Menge Optionen gesetzt sein. Wenn man spielen will, will man sich aber nicht mit diesen Optionen herumschlagen, sondern man will einfach sagen: "Computer, ich möchte auf diesem System dieses Spiel spielen!", und dann soll das Spiel einfach starten, egal auf welchem Emulator.
 Um das auf der Linux-Konsole zu ermöglichen, hab' ich `emustarter.py` geschrieben, und zwar für diejenigen Systeme, bzw. Emulatoren, die ich benutze. Unterstützt werden also: 

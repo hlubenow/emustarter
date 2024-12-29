@@ -2,7 +2,7 @@
 # coding: utf-8
 
 """
-    emustarter.py 3.2 - Starts certain classic games with several emulators
+    emustarter.py 3.3 - Starts certain classic games with several emulators
                         on Linux. Supported systems and emulators are:
 
     - Sinclair ZX Spectrum  (fuse)
@@ -29,9 +29,11 @@
 import os, sys
 import time
 
-# Look for "dat_emustarter.conf" in the same directory as "emustarter.py".
-# Change, if you like:
-DATAFILE = os.path.join(os.path.dirname(__file__), "dat_emustarter.conf")
+SPECTRUMDEFAULTVOLUME = 15
+ATARIDEFAULTVOLUME    = 30
+MAMEDEFAULTVOLUME     = -15
+
+DATAFILENAME          = "dat_emustarter.conf"
 
 class Main:
 
@@ -318,6 +320,7 @@ class System:
 class EmuData:
 
     def __init__(self):
+        self.datafile = os.path.join(os.getcwd(), DATAFILENAME)
         self.readData()
 
     def stripArray(self, a):
@@ -327,11 +330,11 @@ class EmuData:
         return a
 
     def readData(self):
-        if not os.path.exists(DATAFILE):
-            print("\nError: File \"" + DATAFILE + "\" not found.")
+        if not os.path.exists(self.datafile):
+            print("\nError: File \"" + DATAFILENAME + "\" not found.")
             print("Make sure, it is present in the same directory as \"emustarter.py\".\n")
             sys.exit(1)
-        fh = open(DATAFILE, "r")
+        fh = open(self.datafile, "r")
         a  = fh.readlines()
         fh.close()
         lines = {}
@@ -368,12 +371,12 @@ class EmuData:
 
         if platform == "spectrum":
             return {"fullscreen"  : "--full-screen",
-                    "soundvolume" : "--volume-beeper 15"}
+                    "soundvolume" : "--volume-beeper " + str(SPECTRUMDEFAULTVOLUME)}
 
         if platform == "atari":
 
             return {"machinetype" : "-xl",
-                    "soundvolume" : "-volume 5",
+                    "soundvolume" : "-volume " + str(ATARIDEFAULTVOLUME),
                     "holdoption"  : "-nobasic",
                     "fullscreen"  : "-fullscreen"}
 
@@ -388,7 +391,7 @@ class EmuData:
 
         if platform == "mame":
             return {"fullscreen"  : "",
-                    "soundvolume" : "-volume -15"}
+                    "soundvolume" : "-volume " + str(MAMEDEFAULTVOLUME)}
 
 
 if __name__ == '__main__':
