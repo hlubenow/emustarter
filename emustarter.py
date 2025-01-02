@@ -320,7 +320,7 @@ class System:
 class EmuData:
 
     def __init__(self):
-        self.datafile = os.path.join(os.getcwd(), DATAFILENAME)
+        self.datafile = os.path.join(os.path.dirname(__file__), DATAFILENAME)
         self.readData()
 
     def stripArray(self, a):
