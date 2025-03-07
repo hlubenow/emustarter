@@ -229,7 +229,7 @@ class System:
         if self.platform == "atari":
             self.startstring = "atari800 "
             gamestring = os.path.join(self.paths["ATARI_PROGRAMS_PATH"], self.gamedata[gamenumber][1])
-            if self.gamedata[gamenumber][2] == 1:
+            if self.gamedata[gamenumber][2] == "1":
                 self.settings["machinetype"] = "-atari"
             if self.gamename == "Atari BASIC":
                 self.settings["holdoption"] = "-basic"
