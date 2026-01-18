@@ -50,7 +50,7 @@ Wenn man aber nicht möchte, daß `emustarter.py` versucht, den ersten Snapshot 
   - `-nostart`: Nicht den Emulator starten. Nur die Startzeile für den Emulator ausgeben, und dann beenden.
 
 #### Zur Konfiguration von "atari800"
-- Ist die Emulation mit atari800 so langsam, daß sie praktisch gar nicht funktioniert, sollte man prüfen, ob in der Konfigurationsdatei die Option `VIDEO_ACCEL=0` gesetzt ist. `0` (der Wert wie gezeigt) ist der richtige Wert, also der, der funktionieren sollte. Wenn da etwas anderes steht, sollte man den Wert dahingehend ändern.
+- Ist die Emulation mit atari800 so langsam, daß sie praktisch gar nicht funktioniert, sollte man prüfen, ob in der Konfigurationsdatei die Option `VIDEO_ACCEL=0` gesetzt ist. `0` (der Wert wie gezeigt) ist der richtige Wert, also der, der funktionieren sollte. Wenn da etwas anderes steht, sollte man den Wert dahingehend ändern. Auch nach Installation der proprietären Nvidia-Grafiktreiber funktionierte nichts anderes.
 - Zur Joystick-Konfiguration:
   - Damit ein an das Linux-System angeschlossener Joystick funktioniert, ist es nicht nötig, daß im Menü `Controller Configuration` für den Joystick `Enable keyboard joystick` aktiviert ist. Der Joystick sollte also auch ohne diese Option funktionieren.
   - Zeigt der Feuerknopf keine Wirkung, geht man im Menü in `Controller Configuration / Configure real joysticks / Joystick 1 / Configure Buttons`, und setzt unter `A` die Option `Action / Joy Trigger`. Dann speichert man die Konfiguration unter `Emulator Configuration / Save configuration file` ab.
