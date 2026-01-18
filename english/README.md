@@ -37,7 +37,7 @@ Other command line options to `emustarter.py` are:
 - `-nofs`: Don't use fullscreen mode.
 - `-nostart`: Don't start the emulator. Just print the line to execute, then exit.
 
-About the configuration of "atari800":
+#### About the Configuration of "atari800"
 - On some Linux-systems (probably on those without proprietary drivers for the graphics card), the option `VIDEO_ACCEL=0` should be set in the configuration file. Otherwise the emulation may run extremely slowly, that is, it may not work properly.
 - About the configuration of the joystick:
   - For a connected joystick to work, it is not necessary to set the option `Enable keyboard joystick` in the menu `Controller Configuration` of the F1-menu. The joystick should work without this.
