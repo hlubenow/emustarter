@@ -103,7 +103,7 @@ class Main:
             raise ValueError("List-length out of range (1-9999).")
         if defaultchoice < -1 or defaultchoice > len(choices) - 1:
             raise ValueError("Default-choice out of range.")
-        # os.system("clear")
+        os.system("clear")
         x = 0
         print()
         print(headline + ":")
@@ -174,6 +174,8 @@ class RetroSystem:
         return -1
 
     def createSettings(self, clopts):
+        # This function is only executed, when options were passed
+        # on the command-line ("len(sys.argv) > 3").
         o = ((("nofs", "win"), ("fullscreen", False)),
              (("nostart", "dontstart"), ("start", False)))
         for i in range(len(clopts)):
@@ -222,48 +224,43 @@ class RetroSystem:
             return True
         return False
 
-    def adaptAtariFilename(self, fname):
-        if not "." in fname:
-            return fname + ".atr"
-        f = fname.lower()
-        for i in ATARI_SUFFIXES:
-            if f.endswith("." + i):
-                return fname
-        return fname + ".atr"
-
-    def adaptAmigaFilename(self, fname):
-        if fname.endswith(".fs-uae"):
-            return fname
-        else:
-            return fname + ".fs-uae"
-
-    def adaptMameFilename(self, fname):
-        if fname.endswith(".zip"):
-            return fname
-        else:
-            return fname + ".zip"
-
     def createGameRunString(self, gamenumber):
 
         self.gamename = self.gamedata[gamenumber][0]
+        self.gamefilename = self.gamedata[gamenumber][1]
 
         if self.platform == "spectrum":
             self.startstring = "fuse -g paltv4x --no-aspect-hint --kempston --joystick-1-output 2 "
-            gamestring = "--snapshot " + os.path.join(self.paths["SPECTRUM_PROGRAMS_PATH"], self.gamedata[gamenumber][1])
+            gamestring = "--snapshot " + os.path.join(self.paths["SPECTRUM_PROGRAMS_PATH"], self.gamefilename)
 
         if self.platform == "atari":
+            # Add ".atr", to self.gamefilename if necessary:
+            if "." in self.gamefilename:
+                f = fname.lower()
+                x = False
+                for i in ATARI_SUFFIXES:
+                    if f.endswith("." + i):
+                        x = True
+                        break
+                if x == False:
+                    self.gamefilename += ".atr"
+            else:
+                self.gamefilename += ".atr"
+
             self.startstring = "atari800 "
-            fname = self.adaptAtariFilename(self.gamedata[gamenumber][1])
-            gamestring = os.path.join(self.paths["ATARI_PROGRAMS_PATH"], fname)
+            gamestring = os.path.join(self.paths["ATARI_PROGRAMS_PATH"], self.gamefilename)
             if self.gamedata[gamenumber][2] == "1":
                 self.settings["machinetype"] = "-atari"
             if self.gamename == "Atari BASIC":
                 self.settings["holdoption"] = "-basic"
 
         if self.platform == "amiga":
+            # Add ".fs-uae" to self.gamefilename, if necessary:
+            if not self.gamefilename.endswith(".fs-uae"):
+                self.gamefilename += ".fs-uae"
+
             self.startstring = "fs-uae "
-            fname = self.adaptAmigaFilename(self.gamedata[gamenumber][1])
-            gamestring = '"' + os.path.join(self.paths["AMIGA_CONFIGURATIONS_PATH"], fname) + '"'
+            gamestring = '"' + os.path.join(self.paths["AMIGA_CONFIGURATIONS_PATH"], self.gamefilename) + '"'
 
             # Add " --load_state=1" by default (without third element).
             # Add nothing, if third element exists, and is "0",
@@ -274,9 +271,12 @@ class RetroSystem:
                 gamestring += " --load_state=" + self.gamedata[gamenumber][2]
 
         if self.platform == "mame":
+            # Add ".zip" to self.gamefilename, if necessary:
+            if not self.gamefilename.endswith(".zip"):
+                self.gamefilename += ".zip"
+
             self.startstring = "mame -rompath " + self.paths["MAME_PROGRAMS_PATH"] + " -samplepath " + self.paths["MAME_SAMPLES_PATH"] + " "
-            fname = self.adaptMameFilename(self.gamedata[gamenumber][1])
-            gamestring = '"' + os.path.join(self.paths["MAME_PROGRAMS_PATH"], fname) + '"'
+            gamestring = '"' + os.path.join(self.paths["MAME_PROGRAMS_PATH"], self.gamefilename) + '"'
 
         for i in self.settings.keys():
              if self.settings[i]:
@@ -335,7 +335,7 @@ class RetroSystem:
     def start(self, gamenumber):
 
         if self.platform == "amiga":
-            amigaconfigurationfile = os.path.join(self.paths["AMIGA_CONFIGURATIONS_PATH"], self.gamedata[gamenumber][1])
+            amigaconfigurationfile = os.path.join(self.paths["AMIGA_CONFIGURATIONS_PATH"], self.gamefilename)
             if not os.path.exists(amigaconfigurationfile):
                 print("Error: Amiga configuration file\n\n\"" + amigaconfigurationfile + "\"\n\nnot found. Can't start game. Aborting.\n")
                 return
@@ -397,7 +397,7 @@ class EmuData:
         # Define the default values of the options:
 
         if platform == "spectrum":
-            return {"fullscreen"  : "--full-screen",
+            return {"fullscreen"  : "--no-full-screen",
                     "soundvolume" : "--volume-beeper " + str(SPECTRUM_DEFAULTVOLUME)}
 
         if platform == "atari":
