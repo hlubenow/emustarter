@@ -2,7 +2,7 @@
 # coding: utf-8
 
 """
-    emustarter.py 3.3 - Starts certain classic games with several emulators
+    emustarter.py 3.4 - Starts certain classic games with several emulators
                         on Linux. Supported systems and emulators are:
 
     - Sinclair ZX Spectrum  (fuse)
@@ -10,7 +10,9 @@
     - Amiga (500 and 1200)  (fs-uae)
     - Mame                  (mame)
 
-    Copyright (C) 2018-2024 Hauke Lubenow
+    Needs a file called "dat_emustarter.conf" in the script's directory.
+
+    Copyright (C) 2018-2026 Hauke Lubenow
 
     This program is free software: you can redistribute it and/or modify
      it under the terms of the GNU General Public License as published by
@@ -29,11 +31,13 @@
 import os, sys
 import time
 
-SPECTRUMDEFAULTVOLUME = 15
-ATARIDEFAULTVOLUME    = 30
-MAMEDEFAULTVOLUME     = -15
+SPECTRUM_DEFAULTVOLUME = 15
+ATARI_DEFAULTVOLUME    = 30
+MAME_DEFAULTVOLUME     = -15
 
 DATAFILENAME          = "dat_emustarter.conf"
+
+ATARI_SUFFIXES = ("atr", "xex", "com", "cas", "a78")
 
 class Main:
 
@@ -41,23 +45,23 @@ class Main:
 
         self.data = EmuData()
         self.paths = self.data.data["directories"]
-        self.systems = (System(self.paths, self.data, "spectrum", "Sinclair ZX Spectrum", "", "Manic Miner"),
-                        System(self.paths, self.data, "atari", "Atari 800 XL", "", "Joust"),
-                        System(self.paths, self.data, "amiga", "Amiga 500", "Amiga", "Giana Sisters"),
-                        System(self.paths, self.data, "mame", "Mame", "", "Pacman"))
+        self.retrosystems = (RetroSystem(self.paths, self.data, "spectrum", "Sinclair ZX Spectrum", "", "Manic Miner"),
+                             RetroSystem(self.paths, self.data, "atari", "Atari 800 XL", "", "Joust"),
+                             RetroSystem(self.paths, self.data, "amiga", "Amiga 500", "Amiga", "Giana Sisters"),
+                             RetroSystem(self.paths, self.data, "mame", "Mame", "", "Pacman"))
         self.systemnumber = -1
         self.gamenumber   = -1
 
         # First option on command-line (system choice):
 
         if len(sys.argv) > 1:
-            if sys.argv[1].isdigit() and int(sys.argv[1]) >= 1 and int(sys.argv[1]) <= len(self.systems):
+            if sys.argv[1].isdigit() and int(sys.argv[1]) >= 1 and int(sys.argv[1]) <= len(self.retrosystems):
                 self.systemnumber = int(sys.argv[1]) - 1
 
         # Second option on command-line (game choice):
         if len(sys.argv) > 2 and self.systemnumber >= 0:
-            if self.systemnumber < len(self.systems):
-                self.system = self.systems[self.systemnumber]
+            if self.systemnumber < len(self.retrosystems):
+                self.system = self.retrosystems[self.systemnumber]
                 if sys.argv[2].isdigit() and int(sys.argv[2]) >= 1 and int(sys.argv[2]) <= len(self.system.gamedata):
                     self.gamenumber = int(sys.argv[2]) - 1
 
@@ -67,13 +71,13 @@ class Main:
 
         # self.systemnumber is now >= 0.
         if self.gamenumber == -1:
-            if self.systemnumber < len(self.systems):
-                self.system = self.systems[self.systemnumber]
+            if self.systemnumber < len(self.retrosystems):
+                self.system = self.retrosystems[self.systemnumber]
                 self.system.createGameList()
                 defaultgamenumber = self.system.getDefaultGameNumber()
                 self.gamenumber = self.getChoice(self.system.fullplatformname + " - Programs", self.system.gamelist, defaultgamenumber, {})
 
-        # self.system is now set to one of self.systems and
+        # self.system is now set to one of self.retrosystems and
         # self.gamenumber is known.
 
         if len(sys.argv) > 3:
@@ -86,7 +90,7 @@ class Main:
 
     def createSystemNames(self):
         self.systemnames = []
-        for i in self.systems:
+        for i in self.retrosystems:
             self.systemnames.append(i.choicelistname)
 
     def getChoice(self, headline, choices, defaultchoice, interruptions):
@@ -99,7 +103,7 @@ class Main:
             raise ValueError("List-length out of range (1-9999).")
         if defaultchoice < -1 or defaultchoice > len(choices) - 1:
             raise ValueError("Default-choice out of range.")
-        os.system("clear")
+        # os.system("clear")
         x = 0
         print()
         print(headline + ":")
@@ -140,7 +144,7 @@ class Main:
         return int(inputstr) - 1
 
 
-class System:
+class RetroSystem:
 
     def __init__(self, paths, data, platform, fullplatformname, choicelistname, defaultgame):
         self.paths = paths
@@ -218,17 +222,39 @@ class System:
             return True
         return False
 
+    def adaptAtariFilename(self, fname):
+        if not "." in fname:
+            return fname + ".atr"
+        f = fname.lower()
+        for i in ATARI_SUFFIXES:
+            if f.endswith("." + i):
+                return fname
+        return fname + ".atr"
+
+    def adaptAmigaFilename(self, fname):
+        if fname.endswith(".fs-uae"):
+            return fname
+        else:
+            return fname + ".fs-uae"
+
+    def adaptMameFilename(self, fname):
+        if fname.endswith(".zip"):
+            return fname
+        else:
+            return fname + ".zip"
+
     def createGameRunString(self, gamenumber):
 
         self.gamename = self.gamedata[gamenumber][0]
 
         if self.platform == "spectrum":
-            self.startstring = "fuse -g paltv3x --no-aspect-hint --kempston --joystick-1-output 2 "
+            self.startstring = "fuse -g paltv4x --no-aspect-hint --kempston --joystick-1-output 2 "
             gamestring = "--snapshot " + os.path.join(self.paths["SPECTRUM_PROGRAMS_PATH"], self.gamedata[gamenumber][1])
 
         if self.platform == "atari":
             self.startstring = "atari800 "
-            gamestring = os.path.join(self.paths["ATARI_PROGRAMS_PATH"], self.gamedata[gamenumber][1])
+            fname = self.adaptAtariFilename(self.gamedata[gamenumber][1])
+            gamestring = os.path.join(self.paths["ATARI_PROGRAMS_PATH"], fname)
             if self.gamedata[gamenumber][2] == "1":
                 self.settings["machinetype"] = "-atari"
             if self.gamename == "Atari BASIC":
@@ -236,12 +262,12 @@ class System:
 
         if self.platform == "amiga":
             self.startstring = "fs-uae "
-            gamestring = '"' + os.path.join(self.paths["AMIGA_CONFIGURATIONS_PATH"], self.gamedata[gamenumber][1]) + '"'
+            fname = self.adaptAmigaFilename(self.gamedata[gamenumber][1])
+            gamestring = '"' + os.path.join(self.paths["AMIGA_CONFIGURATIONS_PATH"], fname) + '"'
 
             # Add " --load_state=1" by default (without third element).
             # Add nothing, if third element exists, and is "0",
             # "--load_state=" + third element, if it exists, and is larger than 0:
-
             if len(self.gamedata[gamenumber]) < 3:
                 gamestring += " --load_state=1"
             elif int(self.gamedata[gamenumber][2]) > 0:
@@ -249,7 +275,8 @@ class System:
 
         if self.platform == "mame":
             self.startstring = "mame -rompath " + self.paths["MAME_PROGRAMS_PATH"] + " -samplepath " + self.paths["MAME_SAMPLES_PATH"] + " "
-            gamestring = '"' + os.path.join(self.paths["MAME_PROGRAMS_PATH"], self.gamedata[gamenumber][1]) + '"'
+            fname = self.adaptMameFilename(self.gamedata[gamenumber][1])
+            gamestring = '"' + os.path.join(self.paths["MAME_PROGRAMS_PATH"], fname) + '"'
 
         for i in self.settings.keys():
              if self.settings[i]:
@@ -371,12 +398,12 @@ class EmuData:
 
         if platform == "spectrum":
             return {"fullscreen"  : "--full-screen",
-                    "soundvolume" : "--volume-beeper " + str(SPECTRUMDEFAULTVOLUME)}
+                    "soundvolume" : "--volume-beeper " + str(SPECTRUM_DEFAULTVOLUME)}
 
         if platform == "atari":
 
             return {"machinetype" : "-xl",
-                    "soundvolume" : "-volume " + str(ATARIDEFAULTVOLUME),
+                    "soundvolume" : "-volume " + str(ATARI_DEFAULTVOLUME),
                     "holdoption"  : "-nobasic",
                     "fullscreen"  : "-fullscreen"}
 
@@ -391,7 +418,7 @@ class EmuData:
 
         if platform == "mame":
             return {"fullscreen"  : "",
-                    "soundvolume" : "-volume " + str(MAMEDEFAULTVOLUME)}
+                    "soundvolume" : "-volume " + str(MAME_DEFAULTVOLUME)}
 
 
 if __name__ == '__main__':
