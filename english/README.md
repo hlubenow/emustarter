@@ -38,7 +38,7 @@ Other command line options to `emustarter.py` are:
 - `-nostart`: Don't start the emulator. Just print the line to execute, then exit.
 
 - About the configuration of "atari800":
-  - On some Linux-systems (probably on those without proprietary drivers of the graphics card), the option `VIDEO_ACCEL=0` should be set in the configuration file. Otherwise the emulation may run extremely slowly, that is, it may not work.
+  - On some Linux-systems (probably on those on which proprietary drivers for the graphics card aren't installed), the option `VIDEO_ACCEL=0` should be set in the configuration file. Otherwise the emulation may run extremely slowly, that is, it may not work.
   - About the configuration of the joystick:
     - For a connected joystick to work, it is not necessary to set the option `Enable keyboard joystick` in the menu `Controller Configuration` of the F1-menu. The joystick should work without this.
     - If pressing the fire-button doesn't have an effect, a certain option has to be set in the F1-menu: In `Controller Configuration / Configure real joysticks / Joystick 1 / Configure Buttons`, for `A` the option `Action / Joy Trigger` has to be set. After that, the configuration should be saved with `Emulator Configuration / Save configuration file` from the F1-menu. After that, the fire-button should work.
