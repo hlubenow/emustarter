@@ -49,7 +49,7 @@ Wenn man aber nicht möchte, daß `emustarter.py` versucht, den ersten Snapshot 
   - `-nofs`: Nicht im Vollbildmodus starten (sondern in einem Fenster).
   - `-nostart`: Nicht den Emulator starten. Nur die Startzeile für den Emulator ausgeben, und dann beenden.
 
-Zur Konfiguration von "atari800":
+#### Zur Konfiguration von "atari800":
 - Auf manchen Linux-Systemen (vermutlich solchen ohne proprietäre Grafiktreiber) sollte in der Konfigurationsdatei die Option `VIDEO_ACCEL=0` gesetzt sein. Sonst kann es sein, daß die Emulation extrem langsam wird, und also nicht richtig funktioniert.
 - Zur Joystick-Konfiguration:
   - Damit ein an das Linux-System angeschlossener Joystick funktioniert, ist es nicht nötig, daß im Menü `Controller Configuration` für den Joystick `Enable keyboard joystick` aktiviert ist. Der Joystick sollte also auch ohne diese Option funktionieren.
